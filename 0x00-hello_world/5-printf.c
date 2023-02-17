@@ -1,11 +1,11 @@
 #include <stdio.h>
 /**
- * main - prints "with proper grammar, but the outcome is a piece of art,
+ * main - Entery point of the program
  *
  * Description - a challeng given to me by ALX-africa.
  * I am dealing with it right now
  *
- * return - 0 (succeed)
+ * Return - Always 0 (success)
  */
 int main(void)
 {
