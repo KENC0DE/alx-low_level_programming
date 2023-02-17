@@ -2,10 +2,10 @@
 /**
  * main - Entery point of the program
  *
- * Description - a challeng given to me by ALX-africa.
+ * Description: a challeng given to me by ALX-africa.
  * I am dealing with it right now
  *
- * Return - Always 0 (success)
+ * Return: Always 0 (success)
  */
 int main(void)
 {
