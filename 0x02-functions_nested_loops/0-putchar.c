@@ -1,13 +1,18 @@
-#include <stdio.h>
-#include <mian.h>
+#include "main.h"
+
 /**
- * main - entery point
- *
- *
- * Return: 0 success
- */
+*main - function prints text as output
+*
+*Return:return 0
+*/
 int main(void)
 {
-printf("_prutchar\n");
+char school[10] = "_putchar";
+int i;
+for (i = 0; i < 8; i++)
+{
+_putchar(school[i]);
+}
+_putchar(10);
 return (0);
 }
