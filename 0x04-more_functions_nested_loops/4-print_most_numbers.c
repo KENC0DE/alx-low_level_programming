@@ -13,8 +13,8 @@ int i;
 		if ((i != 50) && (i != 52))
 		{
 			i++;
+			putchar(i);
 		}
-		putchar(i);
 	}
 putchar(10);
 }
