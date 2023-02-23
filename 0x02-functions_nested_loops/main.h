@@ -1,7 +1,7 @@
 /**
  *File: main.h
- *Author: Arsene Awounou
- *Desc: header file
+ *Author: ken
+ *Desc: heade
  */
 
 void print_alphabet(void);
