@@ -12,7 +12,7 @@ int i;
 	{
 		if ((i != 50) || (i != 52))
 		{
-			continue;
+			break;
 		}
 		putchar(i);
 	}
