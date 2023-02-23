@@ -12,9 +12,10 @@ int i;
 	{
 		if ((i != 50) || (i != 52))
 		{
-			i++;
-			putchar(i);
+			continue;
 		}
+		putchar(i);
+		i++;
 	}
 putchar(10);
 }
