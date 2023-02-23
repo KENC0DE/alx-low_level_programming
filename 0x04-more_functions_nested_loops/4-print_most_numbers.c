@@ -15,7 +15,6 @@ int i;
 			continue;
 		}
 		putchar(i);
-		i++;
 	}
 putchar(10);
 }
