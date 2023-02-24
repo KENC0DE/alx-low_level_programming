@@ -10,14 +10,18 @@
  */
 void print_square(int size)
 {
+	int inc1, inc2;
+
 	if (size > 0)
 	{
-		for (int n = 0; n < size; n++)
+		for (inc1 = 0; inc1 < size; inc1++)
 		{
-			for (int sh = 0; sh < size; sh++)
+			for (inc2 = 0; inc2 < (size - 1); inc2++)
 			{
 				putchar('#');
 			}
+
+			putchar('#');
 			putchar('\n');
 		}
 	}
