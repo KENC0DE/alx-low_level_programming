@@ -8,7 +8,7 @@
  *
  * Return: intiger value
  */
- 
+
 int _strlen(char *s)
 {
 	int ln;
