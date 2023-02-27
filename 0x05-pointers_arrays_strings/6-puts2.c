@@ -12,7 +12,7 @@
 
 void puts2(char *str)
 {
-	int i
+	int i;
 	int j = strlen(str);
 
 	for (i = 0; i < j; i++)
