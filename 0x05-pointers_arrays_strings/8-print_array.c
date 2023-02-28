@@ -19,7 +19,7 @@ void print_array(int *a, int n)
 	{
 		printf("%d", *(a + i));
 
-		if (i == (n - 2))
+		if (i == (n - 3))
 			continue;
 
 		printf(", ");
