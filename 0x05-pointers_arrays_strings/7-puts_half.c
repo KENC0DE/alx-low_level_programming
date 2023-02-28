@@ -21,9 +21,9 @@ void puts_half(char *str)
 	else
 		hf = (n - 1) / 2;
 
-	for (i = 0; i <= n - 1; i++)
+	for (i = 0; i < n; i++)
 	{
-		if (i < hf)
+		if (i < hf || (str[i] == '\0'))
 			continue;
 
 		putchar(str[i]);
