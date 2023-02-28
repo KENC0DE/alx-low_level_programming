@@ -1,32 +1,25 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "main.h"
-#include <ctype.h>
 
 /**
- * _atoi - number predator
- *
- * @s: the jungle
- *
- * Return: intiger
- */
+* _atoi - converts a string to an int
+* @s: the string to be changed
+*
+* Return: the converted int
+*/
 
 int _atoi(char *s)
 {
-	unsigned int num = 0;
 	int sign = 1;
-	char c;
+	unsigned int num = 0;
 
 	do {
-		c = *s++;
-		if (isdigit(c))
-		{
-			num = (num * 10) + (c - '0');
-		}
-		else if (c == '-')
-		{
-			sign = -1;
-		}
-	} while (!isdigit(c) && c != '\0');
+		if (*s == '-')
+			sign *= -1;
+		else if (*s >= '0' && *s <= '9')
+			num = num * 10 + (*s - '0');
+		else if (num > 0)
+			break;
+	} while (*s++);
+
 	return (num * sign);
 }
