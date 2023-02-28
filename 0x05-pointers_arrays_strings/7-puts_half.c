@@ -17,11 +17,11 @@ void puts_half(char *str)
 	int hf;
 
 	if ((n % 2) == 0)
-		hf = n / 2;
+		hf = (n + 1) / 2;
 	else
-		hf = (n - 1) / 2;
+		hf = n / 2;
 
-	for (i = 0; i < n - 1; i++)
+	for (i = 0; i < n; i++)
 	{
 		if (i < hf)
 			continue;
