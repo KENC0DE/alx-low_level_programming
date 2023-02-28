@@ -21,7 +21,7 @@ void puts_half(char *str)
 	else
 		hf = (n - 1) / 2;
 
-	for (i = 0; i <= n; i++)
+	for (i = 0; i < n - 1; i++)
 	{
 		if (i < hf)
 			continue;
