@@ -27,6 +27,6 @@ int _atoi(char *s)
 		{
 			sign = -1;
 		}
-	} while (c != '\0');
+	} while (!isdigit(c) && c != '\0');
 	return (num * sign);
 }
