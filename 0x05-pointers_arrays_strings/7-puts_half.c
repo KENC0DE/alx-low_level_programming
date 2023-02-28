@@ -19,7 +19,7 @@ void puts_half(char *str)
 	if ((n % 2) == 0)
 		hf = (n / 2) - 1;
 	else
-		hf = ((n - 1) / 2) - 1;
+		hf = ((n - 1) / 2);
 
 	for (i = 0; i < n; i++)
 	{
