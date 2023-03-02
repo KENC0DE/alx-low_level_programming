@@ -26,10 +26,14 @@ char *cap_string(char *str)
 			str[i] == '(' ||
 			str[i] == ')' ||
 			str[i] == '{' ||
+			str[i] == '\t' ||
 			str[i] == '}')
 		{
 			str[i + 1] = toupper(str[i + 1]);
 		}
+		if (str[i] == '\t')
+		{
+			str[i] = ' ';
 	}
 	return (str);
 }
