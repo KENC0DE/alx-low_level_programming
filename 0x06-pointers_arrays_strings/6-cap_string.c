@@ -15,7 +15,7 @@ char *cap_string(char *str)
 	int i;
 	int n = strlen(str);
 
-	for (i = 0; i < n; i++)
+	for (i = 1; i < n; i++)
 	{
 		if (str[i] == ' ' ||
 			str[i] == ';' ||
