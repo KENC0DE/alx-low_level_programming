@@ -14,7 +14,7 @@
 char *_strncat(char *dest, char *src, int n)
 {
 	int i;
-	char c[100];
+	char c[100] = "";
 
 	for (i = 0; i < n; i++)
 	{
