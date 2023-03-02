@@ -1,37 +1,52 @@
-#include <string.h>
-#include <ctype.h>
 #include "main.h"
 
 /**
- * cap_string - capitalize bruh
- *
- * @str: capitalized
- *
- * Return: character
+ * _strlen - returns the length of a string
+ * @s: string
+ * Return: returns length as integer;
  */
+
+int _strlen(char *s)
+{
+	int len = 0;
+
+	while (*(s + len) != '\0')
+		len++;
+
+	return (len);
+}
+
+/**
+* cap_string - function that capitalize first character of a word
+* @str: string to capitalize
+* Return: returns the capitalized string
+*/
 
 char *cap_string(char *str)
 {
-	int i;
-	int n = strlen(str);
+	int index = 0;
 
-	for (i = 0; i < n; i++)
+	while (str[++index])
 	{
-		if (str[i] == ' ' ||
-			str[i] == ';' ||
-			str[i] == '.' ||
-			str[i] == '!' ||
-			str[i] == '?' ||
-			str[i] == '"' ||
-			str[i] == '(' ||
-			str[i] == ')' ||
-			str[i] == '{' ||
-			str[i] == '\t' ||
-			str[i] == '\n' ||
-			str[i] == '}')
-		{
-			str[i + 1] = toupper(str[i + 1]);
-		}
+		while (!(str[index] >= 'a') && (str[index] <= 'z'))
+			index++;
+
+		if (str[index - 1] == ' ' ||
+				str[index - 1] == '\t' ||
+				str[index - 1] == '\n' ||
+				str[index - 1] == ',' ||
+				str[index - 1] == ';' ||
+				str[index - 1] == '.' ||
+				str[index - 1] == '!' ||
+				str[index - 1] == '?' ||
+				str[index - 1] == '"' ||
+				str[index - 1] == '(' ||
+				str[index - 1] == ')' ||
+				str[index - 1] == '{' ||
+				str[index - 1] == '}')
+			str[index] -= 32;
 	}
+
 	return (str);
 }
+
