@@ -2,30 +2,29 @@
 
 /**
   * rot13 - ...
-  * @s: ...
+  * @str: ...
   *
   * Return: ...
   */
-char *rot13(char *s)
+char *rot13(char *str)
 {
-	int a = 0;
+	int i = 0;
 
-	while (s[a])
+	while (str[i])
 	{
-		while ((s[a] >= 'a' && s[a] <= 'z') || (s[a] >= 'A' && s[a] <= 'Z'))
+		while ((str[i] >= 'a' && str[i] <= 'z') ||
+		(str[i] >= 'A' && str[i] <= 'Z'))
 		{
-			if ((s[a] > 'm' && s[a] <= 'z') || (s[a] > 'M' && s[a] <= 'Z'))
+			if ((str[i] > 'm' && str[i] <= 'z') ||
+			(str[i] > 'M' && str[i] <= 'Z'))
 			{
-				s[a] -= 13;
+				str[i] -= 13;
 				break;
 			}
-
-			s[a] += 13;
+			str[i] += 13;
 			break;
 		}
-
-		a++;
+		i++;
 	}
-
-	return (s);
+	return (str);
 }
