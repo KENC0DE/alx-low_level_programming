@@ -21,10 +21,11 @@ char *leet(char *str)
 			if (str[j] == chars[i] || str[j] - 32 == chars[i])
 			{
 				str[j] = nums[i];
-				j++;
 			}
+			j++;
 		}
 		i++;
+		j = 0;
 	}
 	return (str);
 }
