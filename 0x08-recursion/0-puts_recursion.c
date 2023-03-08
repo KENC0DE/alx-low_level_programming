@@ -1,4 +1,4 @@
-#include "mian.h"
+#include "main.h"
 /**
  * _puts_recursion - put in recursion
  * @s: recursed
