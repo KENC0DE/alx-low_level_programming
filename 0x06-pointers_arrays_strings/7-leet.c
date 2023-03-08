@@ -8,20 +8,22 @@
   */
 char *leet(char *str)
 {
-	int i, j;
+	int i = 0, j = 0;
 	char chars[5] = {'A', 'E', 'O', 'T', 'L'};
 	char nums[5] = {'4', '3', '0', '7', '1'};
 	int n = strlen(str);
 
-	for (i = 0; i < 5; i++)
+	while (i < 5)
 	{
-		for (j = 0; j < n; j++)
+		for (j < n)
 		{
 			if (str[j] == chars[i] || str[j] - 32 == chars[i])
 			{
 				str[j] = nums[i];
+				j++;
 			}
 		}
+		i++;
 	}
 	return (str);
 }
