@@ -16,7 +16,7 @@ char *leet(char *str)
 
 	while (i < 5)
 	{
-		for (j < n)
+		while (j < n)
 		{
 			if (str[j] == chars[i] || str[j] - 32 == chars[i])
 			{
