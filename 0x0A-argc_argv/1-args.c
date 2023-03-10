@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include "main.h"
 /**
  * main - print number of agument passed
  * @argc: args
