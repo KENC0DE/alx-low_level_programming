@@ -9,13 +9,14 @@
  * Return: pointer
  */
 
-char *create_array(unsigned size, char c)
+char *create_array(unsigned int size, char c)
 {
 	if (size == 0)
 	{
-		return(NULL);
+		return (NULL);
 	}
 	char *ptr;
+
 	ptr = malloc((sizeof(char) * size) + 1);
 
 	unsigned int i;
