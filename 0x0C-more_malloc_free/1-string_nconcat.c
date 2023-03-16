@@ -1,5 +1,6 @@
 #include "main.h"
 #include <string.h>
+#include <strlib.h>
 
 /**
  * string_nconcat - concat n strings
