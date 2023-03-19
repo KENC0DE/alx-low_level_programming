@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 #include "main.h"
 
 /**
@@ -10,34 +11,22 @@
 */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int l1, i, e;
-	char *a;
+	char *ptr = NULL;
+	unsigned int l1, l2;
 
 	if (s1 == NULL)
 		s1 = "";
-
 	if (s2 == NULL)
 		s2 = "";
-	l1 = 0;
-	while (s1[l1])
-		l1++;
+	l1 = strlen(s1);
+	l2 = strlen(s2);
 
-	a = malloc(sizeof(*a) * l1 + n + 1);
-
-	if (a == NULL)
+	ptr = malloc(sizeof(char) * (l1 + l2 + 1));
+	if (ptr == NULL)
 		return (NULL);
 
-	for (i = 0, e = 0; i < (l1 + n); i++)
-	{
-		if (i < l1)
-		{
-			a[i] = s1[i];
-		}
-		else
-		{
-			a[i] = s2[e++];
-		}
-	}
-	a[i] = '\0';
-	return (a);
+	ptr = strcpy(ptr, s1);
+	ptr = strncat(ptr, s2, n);
+
+	return (ptr);
 }
