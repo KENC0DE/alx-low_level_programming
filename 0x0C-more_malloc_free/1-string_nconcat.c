@@ -21,13 +21,13 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	l1 = strlen(s1);
 	l2 = strlen(s2);
 
-	ptr = malloc(sizeof(char) * (l1 + l2 + 1));
+	ptr = malloc(sizeof(char) * (l1 + n + 1));
 	if (ptr == NULL)
 		return (NULL);
 
 	ptr = strcpy(ptr, s1);
 	ptr = strncat(ptr, s2, n);
-	ptr[l1 + l2 + 1] = '\0';
+	ptr[l1 + n + 1] = '\0';
 
 	return (ptr);
 }
