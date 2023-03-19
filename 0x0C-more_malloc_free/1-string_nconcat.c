@@ -29,7 +29,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 
 	strcpy(ptr, s1);
 	strncat(ptr, s2, n);
-	ptr[l1 + n + 1] = '\0';
+	ptr[l1 + n] = '\0';
 
 	return (ptr);
 }
