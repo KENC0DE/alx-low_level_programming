@@ -27,6 +27,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 
 	ptr = strcpy(ptr, s1);
 	ptr = strncat(ptr, s2, n);
+	ptr[l1 + n + 2] = '\0';
 
 	return (ptr);
 }
