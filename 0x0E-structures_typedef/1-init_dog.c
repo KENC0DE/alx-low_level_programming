@@ -1,4 +1,5 @@
 #include "dog.h"
+#include "main.h"
 
 /**
  * init_dog - edit dog
