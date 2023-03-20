@@ -1,4 +1,4 @@
-#ifndef KEN_HEADER
+#ifndef SIZE
 
 #define SIZE 1024
 
