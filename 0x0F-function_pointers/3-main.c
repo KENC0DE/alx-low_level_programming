@@ -2,6 +2,13 @@
 #include <stdlib.h>
 #include "3-calc.h"
 
+/**
+ * main - main function
+ * @argc: num argument
+ * @argv: the argument
+ * Return: 0
+ */
+
 int main(int argc, char *argv[])
 {
 	int a, b, res;

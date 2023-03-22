@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <string.h>
 /**
- * struct opr - struct the opr
+ * struct op - struct the opr
  * @op: the operation given
- * @func: the func to do the opr
+ * @f: the func to do the opr
 */
 typedef struct op
 {
