@@ -20,8 +20,6 @@ void print_numbers(const char *separetor, const unsigned int n, ...)
 	for (i = 0; i < n; i++)
 	{
 		printf("%d", va_arg(ap, int));
-		if (i != (n - 1)
-			printf("%s", separetor);
 	}
 	printf("\n");
 }
