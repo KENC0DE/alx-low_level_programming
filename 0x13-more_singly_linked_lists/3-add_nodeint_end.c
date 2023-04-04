@@ -19,20 +19,15 @@ listint_t *add_nodeint_end(listint_t **head, const int n)
 	new_node->next = NULL;
 
 	ptr = *head;
-	if (*head != NULL)
-	{
-		while (ptr->next != NULL)
-		{
-			ptr = ptr->next;
-		}
-	}
-	else
+	if (*head == NULL)
 	{
 		*head = new_node;
 		return (new_node);
 	}
+	while (ptr->next)
+		ptr = ptr->next;
 
-	printf("Added node with value %d\n", n);
+	ptr->next = new_node;
 
-	return (ptr);
+	return (new_node);
 }
