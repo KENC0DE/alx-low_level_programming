@@ -15,8 +15,8 @@ size_t print_listint(const listint_t *h)
 	ptr = h;
 	if (ptr == NULL)
 	{
-		printf("empty pointer");
-		return (0);
+		printf("Error\n");
+		return (1);
 	}
 	while (ptr != NULL)
 	{
