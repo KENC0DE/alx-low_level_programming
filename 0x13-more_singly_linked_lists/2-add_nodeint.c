@@ -5,7 +5,7 @@
  * @head: pointer to the first node
  * @n: value to be added
  *
- * Return: number of conted nodes
+ * Return: address of the new node
 */
 listint_t *add_nodeint(listint_t **head, const int n)
 {
