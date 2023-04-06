@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * set_bit - change the bit to 1 at a given index
- * @n: the address of the number
- * @index: the point to be manipulated
+ * clear_bit - change the given point to 0
+ * @n: the number to be manipulated
+ * @index: the poistion to be changed
  * Return: 1 if success 0 if fail
 */
-int set_bit(ulint *n, ui index)
+int clear_bit(ulint *n, ui index)
 {
 	ulint shift;
 
@@ -15,5 +15,7 @@ int set_bit(ulint *n, ui index)
 
 	shift = 1UL << index;
 	*n |= shift;
+	*n ^= shift;
+
 	return (1);
 }
