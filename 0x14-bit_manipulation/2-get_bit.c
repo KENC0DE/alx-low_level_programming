@@ -8,9 +8,10 @@
 */
 int get_bit(ulint n, ui index)
 {
-	n >>= index;
-	if (n == 0)
+	if (index >= sizeof(ulint) * 8)
 		return (-1);
+
+	n >>= index;
 
 	return ((n & 1) ? 1 : 0);
 }
