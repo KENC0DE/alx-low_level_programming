@@ -14,5 +14,6 @@ void print_binary(unsigned long int n);
 int get_bit(ulint n, ui index);
 int set_bit(ulint *n, ui index);
 int clear_bit(ulint *n, ui index);
+ui flip_bits(ulint n, ulint m);
 
 #endif
