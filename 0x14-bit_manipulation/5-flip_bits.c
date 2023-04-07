@@ -8,17 +8,18 @@
 */
 ui flip_bits(ulint n, ulint m)
 {
-	int i, nf, mf;
-	ui numflip;
+	int i;
+	ulint dif;
+	ui ndif;
 
-	numflip = 0;
-	for (i = 31; i >= 0; i--)
+	dif = n ^ m;
+	ndif = 0;
+	i = sizeof(ulint) * 8;
+	for (i--; i >= 0; i--)
 	{
-		nf = (n >> i) & 1;
-		mf = (m >> i) & 1;
-		if (nf != mf)
-			numflip++;
+		if ((dif >> i) & 1)
+			ndif++;
 	}
 
-	return (numflip);
+	return (ndif);
 }
