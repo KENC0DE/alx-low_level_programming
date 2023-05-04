@@ -6,6 +6,6 @@
 #include <string.h>
 
 unsigned int binary_to_uint(const char *b);
-int square(int a, int b);
+void print_binary(unsigned long int n);
 
 #endif
