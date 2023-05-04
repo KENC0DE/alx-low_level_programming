@@ -12,7 +12,7 @@ void print_binary(unsigned long int n)
 	unsigned long int k = n;
 
 	if (n == 0)
-		printf("%c", '0');
+		putchar('0');
 
 	j = 0;
 	while (k)
