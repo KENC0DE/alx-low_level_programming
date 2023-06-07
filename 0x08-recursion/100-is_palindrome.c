@@ -25,9 +25,10 @@ int is_palindrome(char *s)
 {
 	int len;
 
-	len = 0;
-	while (s[len] != '\0')
-		len++;
+	if (*s == '\0')
+		return (0);
+
+	len = 1 + is_palindrome(s + 1);
 
 	return (checkPalindrome(0, s, len - 1));
 }
