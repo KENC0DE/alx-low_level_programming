@@ -1,4 +1,5 @@
 #include "main.h"
+#include <string.h>
 
 /**
  * checkPalindrome - checks if the letters are the same in both ends.
@@ -25,10 +26,6 @@ int is_palindrome(char *s)
 {
 	int len;
 
-	if (*s == '\0')
-		return (0);
-
-	len = 1 + is_palindrome(s + 1);
-
+	len = strlen(s);
 	return (checkPalindrome(0, s, len - 1));
 }
