@@ -16,7 +16,7 @@ char **alloc(char *str)
 	hyt = 0;
 	for (idx = 0; str[idx]; idx++)
 	{
-		if (str[idx] != ' ' && str[idx + 1] == ' ')
+		if (str[idx] != ' ' && (str[idx + 1] == ' ' || str[idx + 1] == '\0'))
 			hyt++;
 		wdth++;
 	}
