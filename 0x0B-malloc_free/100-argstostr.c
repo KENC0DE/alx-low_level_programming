@@ -21,7 +21,7 @@ char *argstostr(int ac, char **av)
 			totLeng++;
 	}
 
-	conCated = malloc(sizeof(char) * (totLeng + ac));
+	conCated = malloc(sizeof(char) * (totLeng + ac + 1));
 	if (conCated == NULL)
 		return (NULL);
 
