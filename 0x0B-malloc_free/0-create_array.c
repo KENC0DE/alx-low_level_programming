@@ -18,12 +18,8 @@ char *create_array(unsigned int size, char c)
 	if (array == NULL)
 		return (NULL);
 
-	k = 0;
-	while (array[k])
-	{
+	for (k = 0; k < size; k++)
 		array[k] = c;
-		k++;
-	}
 
 	return (array);
 }
