@@ -14,9 +14,9 @@ int **alloc_grid(int width, int height)
 	if (width <= 0 || height <= 0)
 		return (NULL);
 
-	multMem = malloc(sizeof(int *) * width);
-	for (idx = 0; idx < width; idx++)
-		multMem[idx] = malloc(sizeof(int) * height);
+	multMem = malloc(sizeof(int*) * height);
+	for (idx = 0; idx < height; idx++)
+		multMem[idx] = malloc(sizeof(int) * width);
 	if (multMem == NULL)
 	{
 		for (frup = 0; frup < width; frup++)
@@ -24,9 +24,9 @@ int **alloc_grid(int width, int height)
 		return (NULL);
 	}
 
-	for (iti = 0; iti < width; iti++)
+	for (iti = 0; iti < height; iti++)
 	{
-		for (siti = 0; siti < height; siti++)
+		for (siti = 0; siti < width; siti++)
 			multMem[iti][siti] = 0;
 	}
 
