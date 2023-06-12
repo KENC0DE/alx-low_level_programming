@@ -15,7 +15,7 @@ char *argstostr(int ac, char **av)
 		return (NULL);
 
 	totLeng = 0;
-	for (idx = 1; idx < ac; idx++)
+	for (idx = 0; idx < ac; idx++)
 	{
 		for (sidx = 0; av[idx][sidx]; sidx++)
 			totLeng++;
@@ -26,7 +26,7 @@ char *argstostr(int ac, char **av)
 		return (NULL);
 
 	totP = 0;
-	for (pars = 1; pars < ac; pars++)
+	for (pars = 0; pars < ac; pars++)
 	{
 		for (asgn = 0; av[pars][asgn]; asgn++, totP++)
 		{
