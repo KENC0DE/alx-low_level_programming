@@ -14,13 +14,14 @@ int **alloc_grid(int width, int height)
 	if (width <= 0 || height <= 0)
 		return (NULL);
 
-	multMem = malloc(sizeof(int*) * height);
+	multMem = malloc(sizeof(int *) * height);
 	for (idx = 0; idx < height; idx++)
 		multMem[idx] = malloc(sizeof(int) * width);
 	if (multMem == NULL)
 	{
 		for (frup = 0; frup < width; frup++)
 			free(multMem[frup]);
+		free(multMem);
 		return (NULL);
 	}
 
