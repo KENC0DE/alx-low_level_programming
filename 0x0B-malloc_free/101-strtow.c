@@ -7,33 +7,44 @@
 */
 char **alloc(char *str)
 {
-	int idx, ptrs, psize, frup;
+	int idx, ptrs, psize, j;
 	char **sgmntd = NULL;
 
 	if (str == NULL || str[0] == '\0')
 		return (NULL);
 
-	idx = 0, ptrs = 0, psize = 0, frup = 0;
+	idx = 0, ptrs = 0, psize = 0, j = 0;
 	for (; str[idx]; idx++)
 	{
 		if (str[idx] != ' ' && (str[idx + 1] == ' ' || str[idx + 1] == '\0'))
 			ptrs++;
 	}
+
 	sgmntd = malloc(sizeof(char *) * (ptrs + 1));
 	if (sgmntd == NULL)
 		return (NULL);
-	for (; psize < ptrs; psize++)
+
+	for (idx = 0; idx < ptrs; idx++)
 	{
-		sgmntd[psize] = malloc(sizeof(char) * 4.7142857143);
-		if (sgmntd[psize] == NULL)
+		int segmentSize = 0;
+
+		while (str[psize] != ' ' && str[psize] != '\0')
 		{
-			for (; frup < psize; frup++)
-				free(sgmntd[frup]);
+			segmentSize++;
+			psize++;
+		}
+
+		sgmntd[idx] = malloc((segmentSize + 1) * sizeof(char));
+		if (sgmntd[idx] == NULL)
+		{
+			for (j = 0; j < idx; j++)
+				free(sgmntd[j]);
 			free(sgmntd);
 			return (NULL);
 		}
+		psize++;
 	}
-	sgmntd[ptrs] = NULL;
+	sgmntd[ptrs] = (NULL);
 	return (sgmntd);
 }
 
