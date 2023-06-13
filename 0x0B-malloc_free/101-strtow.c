@@ -18,15 +18,15 @@ char **alloc(char *str)
 	{
 		if (str[idx] != ' ' && (str[idx + 1] == ' ' || str[idx + 1] == '\0'))
 			ptrs++;
-		if (str[idx] == ' ')
+		if (str[idx] != ' ')
 			xss++;
 	}
-	sgmntd = malloc(sizeof(char *) * (ptrs));
+	sgmntd = malloc(sizeof(char *) * (ptrs + 1));
 	if (sgmntd == NULL)
 		return (NULL);
 	for (; psize < (ptrs + 1); psize++)
 	{
-		sgmntd[psize] = malloc(sizeof(char) * (idx - xss));
+		sgmntd[psize] = malloc(sizeof(char) * (xss));
 		if (sgmntd[psize] == NULL)
 		{
 			for (; frup < psize; frup++)
