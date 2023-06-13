@@ -1,69 +1,69 @@
 #include "main.h"
 
 /**
- * alloc - prepare the memory space.
+ * alloc - allocate memory for 2d pointer
  * @str: memory to be prepared for.
- * Return: 1prepared memory
+ * Return: pointer to the allocated memory.
 */
 char **alloc(char *str)
 {
-	char **cuted = NULL;
-	int idx, wdth, hyt, frup;
+	int idx, ptrs, psize, frup;
+	char **sgmntd = NULL;
 
-	if (str == NULL) /* || str == "")*/
+	if (str == NULL || str[0] == '\0')
 		return (NULL);
 
-	hyt = 0;
-	for (idx = 0; str[idx]; idx++)
+	idx = 0, ptrs = 0, psize = 0, frup = 0;
+	for (; str[idx]; idx++)
 	{
-		if (str[idx] != ' ' && str[idx + 1] == ' ')
-			hyt++;
-		wdth++;
+		if (str[idx] != ' ' && (str[idx + 1] == ' ' || str[idx + 1] == '\0'))
+			ptrs++;
 	}
-
-	cuted = malloc(sizeof(char *) * (hyt + 1));
-	if (cuted == NULL)
+	sgmntd = malloc(sizeof(char *) * (ptrs + 1));
+	if (sgmntd == NULL)
 		return (NULL);
-	for (idx = 0; idx < hyt; idx++)
+	for (; psize < (ptrs + 1); psize++)
 	{
-		cuted[idx] = malloc(sizeof(char) * wdth);
-		if (cuted[idx] == NULL)
+		sgmntd[psize] = malloc(sizeof(char) * idx);
+		if (sgmntd[psize] == NULL)
 		{
-			for (frup = 0; frup < idx; frup++)
-				free(cuted[frup]);
-			free(cuted);
-			return (NULL);
+			for (; frup < psize; frup++)
+				free(sgmntd[frup]);
+			free(sgmntd);
 		}
 	}
-	cuted[hyt] = NULL;
-	return (cuted);
+	sgmntd[ptrs] = NULL;
+	return (sgmntd);
 }
 
 /**
- * strtow - splits strings
- * @str: string to be splited
- * Return: poiner to the splited string
+ * strtow - split string into words
+ * @str: string to be splited.
+ * Return: pointer to the splited string
 */
 char **strtow(char *str)
 {
-	int idx, pprs, asgn;
-	char **cuted = NULL;
+	char **sgmntd = NULL;
+	int idx, ptr, sbPtr;
 
-	cuted = alloc(str);
+	idx = 0, ptr = 0, sbPtr = 0;
+	sgmntd = alloc(str);
+	if (sgmntd == NULL)
+		return (NULL);
 
-	asgn = 0;
-	for (idx = 0; str[idx]; idx++)
+	for (; str[idx]; idx++)
 	{
 		if (str[idx] != ' ')
 		{
-			for (pprs = 0; str[idx] != ' '; pprs++, idx++)
-			{
-				cuted[asgn][pprs] = str[idx];
-			}
-			cuted[asgn][pprs] = '\0';
-			asgn++;
+			sgmntd[ptr][sbPtr] = str[idx];
+			sbPtr++;
+		}
+		if (sbPtr > 0 && str[idx] == ' ')
+		{
+			sgmntd[ptr][sbPtr] = '\0';
+			ptr++;
+			sbPtr = 0;
 		}
 	}
-
-	return (cuted);
+	return (sgmntd);
 }
