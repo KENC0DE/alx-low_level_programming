@@ -7,31 +7,39 @@
 */
 char **alloc(char *str)
 {
-	int idx, ptrs, psize, frup, xss;
+	int idx, ptrs, psize, frup, PtR;
 	char **sgmntd = NULL;
 
 	if (str == NULL || str[0] == '\0')
 		return (NULL);
 
-	idx = 0, ptrs = 0, psize = 0, frup = 0, xss = 0;
+	idx = 0, ptrs = 0, psize = 0, frup = 0, PtR = 0;
 	for (; str[idx]; idx++)
 	{
 		if (str[idx] != ' ' && (str[idx + 1] == ' ' || str[idx + 1] == '\0'))
 			ptrs++;
-		if (str[idx] != ' ')
-			xss++;
 	}
 	sgmntd = malloc(sizeof(char *) * (ptrs + 1));
 	if (sgmntd == NULL)
 		return (NULL);
-	for (; psize < (ptrs + 1); psize++)
+	for (idx = 0; str[idx]; idx++)
 	{
-		sgmntd[psize] = malloc(sizeof(char) * (xss));
-		if (sgmntd[psize] == NULL)
+		if (str[idx] != ' ')
 		{
-			for (; frup < psize; frup++)
-				free(sgmntd[frup]);
-			free(sgmntd);
+			psize++;
+		}
+		if (psize > 0 && str[idx] == ' ')
+		{
+			sgmntd[PtR] = malloc(sizeof(char) * (psize + 1));
+			if (sgmntd == NULL)
+			{
+				for (; frup < PtR; frup++)
+					free(sgmntd[frup]);
+				free(sgmntd);
+				return (NULL);
+			}
+			PtR++;
+			psize = 0;
 		}
 	}
 	sgmntd[ptrs] = NULL;
