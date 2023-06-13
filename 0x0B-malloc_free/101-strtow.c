@@ -7,60 +7,35 @@
 */
 char **alloc(char *str)
 {
-    int idx, ptrs, psize, i;
-    char **sgmntd = NULL;
+	int idx, ptrs, psize, frup;
+	char **sgmntd = NULL;
 
-    if (str == NULL || str[0] == '\0')
-	return NULL;
+	if (str == NULL || str[0] == '\0')
+		return (NULL);
 
-    idx = 0, ptrs = 0, psize = 0, i = 0;
-    for (; str[idx]; idx++)
-    {
-	if (str[idx] != ' ' && (str[idx + 1] == ' ' || str[idx + 1] == '\0'))
-	    ptrs++;
-    }
-
-    sgmntd = malloc(sizeof(char *) * (ptrs + 1));
-    if (sgmntd == NULL)
-	return NULL;
-
-    idx = 0;
-    while (*str)
-    {
-	if (*str != ' ')
+	idx = 0, ptrs = 0, psize = 0, frup = 0;
+	for (; str[idx]; idx++)
 	{
-	    int segment_length = 0;
-	    char *segment_start = str;
-	    
-	    while (*str && *str != ' ')
-	    {
-		segment_length++;
-		str++;
-	    }
-
-	    sgmntd[psize] = malloc(sizeof(char) * (segment_length + 1));
-	    if (sgmntd[psize] == NULL)
-	    {
-		for (i = 0; i < psize; i++)
-		    free(sgmntd[i]);
-		free(sgmntd);
-		return NULL;
-	    }
-
-	    strncpy(sgmntd[psize], segment_start, segment_length);
-	    sgmntd[psize][segment_length] = '\0';
-	    psize++;
+		if (str[idx] != ' ' && (str[idx + 1] == ' ' || str[idx + 1] == '\0'))
+			ptrs++;
 	}
-	else
+	sgmntd = malloc(sizeof(char *) * (ptrs + 1));
+	if (sgmntd == NULL)
+		return (NULL);
+	for (; psize < ptrs; psize++)
 	{
-	    str++;
+		sgmntd[psize] = malloc(sizeof(char) * 0);
+		if (sgmntd[psize] == NULL)
+		{
+			for (; frup < psize; frup++)
+				free(sgmntd[frup]);
+			free(sgmntd);
+			return (NULL);
+		}
 	}
-    }
-
-    sgmntd[ptrs] = NULL;
-    return sgmntd;
+	sgmntd[ptrs] = NULL;
+	return (sgmntd);
 }
-
 
 /**
  * strtow - split string into words
