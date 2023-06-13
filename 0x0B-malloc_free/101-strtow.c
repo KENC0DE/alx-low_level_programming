@@ -7,24 +7,26 @@
 */
 char **alloc(char *str)
 {
-	int idx, ptrs, psize, frup;
+	int idx, ptrs, psize, frup, xss;
 	char **sgmntd = NULL;
 
 	if (str == NULL || str[0] == '\0')
 		return (NULL);
 
-	idx = 0, ptrs = 0, psize = 0, frup = 0;
+	idx = 0, ptrs = 0, psize = 0, frup = 0, xss = 0;
 	for (; str[idx]; idx++)
 	{
 		if (str[idx] != ' ' && (str[idx + 1] == ' ' || str[idx + 1] == '\0'))
 			ptrs++;
+		if (str[idx] == ' ')
+			xss++;
 	}
 	sgmntd = malloc(sizeof(char *) * (ptrs));
 	if (sgmntd == NULL)
 		return (NULL);
 	for (; psize < (ptrs + 1); psize++)
 	{
-		sgmntd[psize] = malloc(sizeof(char) * (idx));
+		sgmntd[psize] = malloc(sizeof(char) * (idx - xss));
 		if (sgmntd[psize] == NULL)
 		{
 			for (; frup < psize; frup++)
