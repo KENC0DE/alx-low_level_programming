@@ -19,7 +19,7 @@ char **alloc(char *str)
 		if (str[idx] != ' ' && (str[idx + 1] == ' ' || str[idx + 1] == '\0'))
 			ptrs++;
 	}
-	sgmntd = malloc(sizeof(char *) * (ptrs + 1));
+	sgmntd = malloc(sizeof(char *) * (ptrs));
 	if (sgmntd == NULL)
 		return (NULL);
 	for (; psize < (ptrs + 1); psize++)
