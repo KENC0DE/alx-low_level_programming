@@ -10,7 +10,7 @@ char **alloc(char *str)
 	int idx, ptrs, psize, frup;
 	char **sgmntd = NULL;
 
-	if (str == NULL || strcmp(str, " ") == 0)
+	if (str == NULL || str[0] == '\0' || strcmp(str, " ") == 0)
 		return (NULL);
 
 	idx = 0, ptrs = 0, psize = 0, frup = 0;
