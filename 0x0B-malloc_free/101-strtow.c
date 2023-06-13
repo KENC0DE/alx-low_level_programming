@@ -10,7 +10,7 @@ char **alloc(char *str)
 	int idx, ptrs, psize, frup;
 	char **sgmntd = NULL;
 
-	if (str == NULL || str[0] == '\0' || strcmp(str, " ") == 0)
+	if (str == NULL || str[0] == '\0')
 		return (NULL);
 
 	idx = 0, ptrs = 0, psize = 0, frup = 0;
@@ -24,7 +24,7 @@ char **alloc(char *str)
 		return (NULL);
 	for (; psize < (ptrs + 1); psize++)
 	{
-		sgmntd[psize] = malloc(sizeof(char) * idx);
+		sgmntd[psize] = malloc(sizeof(char) * (idx - 1));
 		if (sgmntd[psize] == NULL)
 		{
 			for (; frup < psize; frup++)
@@ -46,6 +46,11 @@ char **strtow(char *str)
 	char **sgmntd = NULL;
 	int idx, ptr, sbPtr;
 
+	if (strcmp(str, " ") == 0)
+	{
+		printf("Failed\n");
+		return (NULL);
+	}
 	idx = 0, ptr = 0, sbPtr = 0;
 	sgmntd = alloc(str);
 	if (sgmntd == NULL)
