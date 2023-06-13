@@ -24,7 +24,7 @@ char **alloc(char *str)
 		return (NULL);
 	for (; psize < ptrs; psize++)
 	{
-		sgmntd[psize] = malloc(sizeof(char) * 0);
+		sgmntd[psize] = malloc(sizeof(char) * 2);
 		if (sgmntd[psize] == NULL)
 		{
 			for (; frup < psize; frup++)
