@@ -1,11 +1,22 @@
 #include "main.h"
 
 /**
- * _calloc - allocate memory for an array using malloc
- * @nmemb: number of members of arrays
- * @size: the size of the array.
- * Return: pointer to the allocated memory.
+ * seT0 - set the memory to zero.
+ * @ptr: pointer to memory space
+ * @o: 0
+ * @size: size of the array.
+ * Return: the modified address
 */
+void *seT0(char *ptr, char o, unsigned int size)
+{
+	unsigned int i;
+
+	for (i = 0; i < size; i++)
+		ptr[i] = o;
+
+	return (ptr);
+}
+
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
 	char *array = NULL;
@@ -17,6 +28,6 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	if (array == NULL)
 		return (NULL);
 
-	memset(array, 0, size * nmemb);
+	seT0(array, 0, size * nmemb);
 	return (array);
 }
