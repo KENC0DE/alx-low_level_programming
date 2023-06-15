@@ -22,7 +22,9 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	ptr = (char *)array;
 	for (i = 0; i < nmemb; i++)
 	{
+		ptr = 0;
 		ptr += size;
 	}
+
 	return (array);
 }
