@@ -1,49 +1,44 @@
 #include "main.h"
 
 /**
- * string_nconcat - add n number of chars on to stirng 1.
+ * string_nconcat - concatenate n characters from s2 to s1.
  * @s1: first string.
- * @s2: second stirng
- * @n: number of character to be copied.
- * Return: pointer to the new memory space with concatenated s1 and s2
-*/
+ * @s2: second string.
+ * @n: number of characters to be copied from s2.
+ * Return: pointer to the new memory space with concatenated s1 and s2.
+ */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	char *concated = NULL;
-	unsigned int l1, l2, i;
+	char *concatenated = NULL;
+	unsigned int len1, len2, i, j;
 
 	if (s1 == NULL)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
 
-	l1 = 0;
-	for (i = 0; s1[i]; i++)
-		l1++;
+	len1 = 0;
+	while (s1[len1])
+		len1++;
 
-	l2 = 0;
-	for (i = 0; s2[i]; i++)
-		l2++;
+	len2 = 0;
+	while (s2[len2])
+		len2++;
 
-	if (n >= l2)
-		n = l2;
+	if (n >= len2)
+		n = len2;
 
-	concated = malloc(sizeof(char) * (l1 + l2 + 1));
-	if (concated == NULL)
+	concatenated = malloc(sizeof(char) * (len1 + n + 1));
+	if (concatenated == NULL)
 		return (NULL);
 
-	i = 0;
-	while (s1[i])
-	{
-		concated[i] = s1[i];
-		i++;
-	}
-	i = 0;
-	while (i < n)
-	{
-		concated[l1] = s2[i];
-		l1++, i++;
-	}
-	concated[l1] = '\0';
-	return (concated);
+	for (i = 0; i < len1; i++)
+		concatenated[i] = s1[i];
+
+	for (j = 0; j < n; j++, i++)
+		concatenated[i] = s2[j];
+
+	concatenated[i] = '\0';
+
+	return (concatenated);
 }
