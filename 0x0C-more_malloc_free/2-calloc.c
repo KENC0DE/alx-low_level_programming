@@ -9,7 +9,6 @@
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
 	char *array = NULL;
-	unsigned int cnt;
 
 	if (nmemb == 0 || size == 0)
 		return (NULL);
@@ -18,8 +17,6 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	if (array == NULL)
 		return (NULL);
 
-	for (cnt = 0; cnt < nmemb; cnt++)
-		array[cnt] = '0';
-
+	memset(array, 0, size * nmemb);
 	return (array);
 }
