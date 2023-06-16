@@ -8,18 +8,25 @@
  * Return: the converted integer
 */
 int *intoInt(const char *ptr)
-	{
-	int length = strlen(ptr);
-	int *ingr = malloc(sizeof(int) * length);
+{
+	int length;
+	int *ingr;
+	int i;
+
+	length = strlen(ptr);
+	ingr = (int *)malloc(sizeof(int) * length);
 
 	if (ingr == NULL)
+	{
+		fprintf(stderr, "Memory allocation failed\n");
 		exit(1);
+	}
 
-	for (int i = 0; i < length; i++)
+	for (i = 0; i < length; i++)
 	{
 		ingr[length - 1 - i] = ptr[i] - '0';
 	}
-	return (ingr);
+	return ingr;
 }
 
 /**
@@ -30,8 +37,12 @@ int *intoInt(const char *ptr)
 */
 void setTo0(int *location, int length)
 {
-	for (int i = 0; i < length; i++)
+	int i;
+
+	for (i = 0; i < length; i++)
+	{
 		location[i] = 0;
+	}
 }
 
 /**
@@ -43,24 +54,32 @@ void setTo0(int *location, int length)
  * @memsize: memory size that holds the product.
  * Return: pointer to product.
 */
-int *multiply(const int *num1, const int *num2, int num1l, int num2l, int memsize)
+int *multiply(const int *num1, const int *num2,
+              int num1l, int num2l, int memsize)
 {
-	int *product = malloc(sizeof(int) * (memsize * 2));
+	int *product;
+	int pidx, p1;
+
+	product = (int *)malloc(sizeof(int) * (memsize * 2));
 
 	if (product == NULL)
+	{
+		fprintf(stderr, "Memory allocation failed\n");
 		exit(1);
+	}
 
 	setTo0(product, (memsize * 2));
-	for (int pidx = 0; pidx < num2l; pidx++)
+
+	for (pidx = 0; pidx < num2l; pidx++)
 	{
-		for (int p1 = 0; p1 < num1l; p1++)
+		for (p1 = 0; p1 < num1l; p1++)
 		{
 		product[pidx + p1] += num2[pidx] * num1[p1];
 		product[pidx + p1 + 1] += product[pidx + p1] / 10;
 		product[pidx + p1] %= 10;
 		}
 	}
-	return (product);
+	return product;
 }
 
 /**
@@ -71,28 +90,33 @@ int *multiply(const int *num1, const int *num2, int num1l, int num2l, int memsiz
 */
 int main(int argc, char **argv)
 {
+	int num1_length, num2_length, result_length;
+	int *integer1, *integer2, *product;
+	int nonZeroIndex, i;
+
 	if (argc != 3)
 	{
-		printf("Error\n");
-		return (0);
+		fprintf(stderr, "Error\n");
+		return 1;
 	}
 
-	int num1_length = strlen(argv[1]);
-	int num2_length = strlen(argv[2]);
-	int result_length = num1_length + num2_length;
-	int *integer1 = intoInt(argv[1]);
-	int *integer2 = intoInt(argv[2]);
+	num1_length = strlen(argv[1]);
+	num2_length = strlen(argv[2]);
+	result_length = num1_length + num2_length;
 
-	int *product = multiply(integer1, integer2, num1_length, num2_length, result_length);
+	integer1 = intoInt(argv[1]);
+	integer2 = intoInt(argv[2]);
 
-	int nonZeroIndex = result_length - 1;
+	product = multiply(integer1, integer2, num1_length, num2_length, result_length);
+
+	nonZeroIndex = result_length - 1;
 
 	while (nonZeroIndex > 0 && product[nonZeroIndex] == 0)
 	{
 		nonZeroIndex--;
 	}
 
-	for (int i = nonZeroIndex; i >= 0; i--)
+	for (i = nonZeroIndex; i >= 0; i--)
 	{
 		printf("%d", product[i]);
 	}
@@ -102,5 +126,5 @@ int main(int argc, char **argv)
 	free(integer2);
 	free(product);
 
-	return (0);
+	return 0;
 }
