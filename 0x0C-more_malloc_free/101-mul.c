@@ -3,128 +3,92 @@
 #include <string.h>
 
 /**
- * intoInt - char to int
- * @ptr: addres to be converted
- * Return: the converted integer
+ * main - manfuns
+ * @argc: argc
+ * @argv: arga
+ * Return: kds
 */
-int *intoInt(const char *ptr)
+int main(int argc, char *argv[])
 {
-	int length;
-	int *ingr;
-	int i;
-
-	length = strlen(ptr);
-	ingr = (int *)malloc(sizeof(int) * length);
-
-	if (ingr == NULL)
-	{
-		fprintf(stderr, "Memory allocation failed\n");
-		exit(1);
-	}
-
-	for (i = 0; i < length; i++)
-	{
-		ingr[length - 1 - i] = ptr[i] - '0';
-	}
-	return ingr;
-}
-
-/**
- * setTo0 - set every location to 0
- * @location: place to be set to 0
- * @length: of the memory.
- * Return: nothing.
-*/
-void setTo0(int *location, int length)
-{
-	int i;
-
-	for (i = 0; i < length; i++)
-	{
-		location[i] = 0;
-	}
-}
-
-/**
- * multiply - perform multplication opration.
- * @num1: first number
- * @num2: second number
- * @num1l: length of num1
- * @num2l: length of num2
- * @memsize: memory size that holds the product.
- * Return: pointer to product.
-*/
-int *multiply(const int *num1, const int *num2,
-              int num1l, int num2l, int memsize)
-{
-	int *product;
-	int pidx, p1;
-
-	product = (int *)malloc(sizeof(int) * (memsize * 2));
-
-	if (product == NULL)
-	{
-		fprintf(stderr, "Memory allocation failed\n");
-		exit(1);
-	}
-
-	setTo0(product, (memsize * 2));
-
-	for (pidx = 0; pidx < num2l; pidx++)
-	{
-		for (p1 = 0; p1 < num1l; p1++)
-		{
-		product[pidx + p1] += num2[pidx] * num1[p1];
-		product[pidx + p1 + 1] += product[pidx + p1] / 10;
-		product[pidx + p1] %= 10;
-		}
-	}
-	return product;
-}
-
-/**
- * main - multply to integers
- * @argc: number of arguments
- * @argv: the arguments
- * Return: product of two integer multiplication.
-*/
-int main(int argc, char **argv)
-{
-	int num1_length, num2_length, result_length;
-	int *integer1, *integer2, *product;
-	int nonZeroIndex, i;
-
 	if (argc != 3)
 	{
-		fprintf(stderr, "Error\n");
-		return 1;
+		printf("Error\n");
+		return (98);
 	}
 
-	num1_length = strlen(argv[1]);
-	num2_length = strlen(argv[2]);
-	result_length = num1_length + num2_length;
-
-	integer1 = intoInt(argv[1]);
-	integer2 = intoInt(argv[2]);
-
-	product = multiply(integer1, integer2, num1_length, num2_length, result_length);
-
-	nonZeroIndex = result_length - 1;
-
-	while (nonZeroIndex > 0 && product[nonZeroIndex] == 0)
+	if (!is_valid_number(argv[1]) || !is_valid_number(argv[2]))
 	{
-		nonZeroIndex--;
+		printf("Error\n");
+		return (98);
 	}
 
-	for (i = nonZeroIndex; i >= 0; i--)
+	multiply(argv[1], argv[2]);
+	return (0);
+}
+
+/**
+ * is_valid_number - lsj
+ * @number: kdjls
+ * Return: nos
+*/
+int is_valid_number(const char *number)
+{
+	int i;
+	int length = strlen(number);
+
+	for (i = 0; i < length; i++)
 	{
-		printf("%d", product[i]);
+		if (number[i] < '0' || number[i] > '9')
+		{
+		return (0);
+		}
 	}
+	return (1);
+}
+
+/**
+ * multiply - ljs
+ * @num1: ljsdf
+ * @num2: slkdj
+*/
+void multiply(const char *num1, const char *num2)
+{
+	int length1 = strlen(num1);
+	int length2 = strlen(num2);
+	int resultLength = length1 + length2;
+	int *result = calloc(resultLength, sizeof(int));
+
+	int i, j, digit1, digit2, product, position;
+	int leadingZeros = 1;
+
+	for (i = length1 - 1; i >= 0; i--)
+	{
+		for (j = length2 - 1; j >= 0; j--)
+		{
+			digit1 = num1[i] - '0';
+			digit2 = num2[j] - '0';
+			product = digit1 * digit2;
+			position = i + j + 1;
+
+			product += result[position];
+
+			result[position] = product % 10;
+			result[position - 1] += product / 10;
+		}
+	}
+
+	for (i = 0; i < resultLength; i++)
+	{
+		if (result[i] != 0)
+		{
+		leadingZeros = 0;
+		}
+		if (!leadingZeros)
+		{
+		printf("%d", result[i]);
+		}
+	}
+
 	printf("\n");
-
-	free(integer1);
-	free(integer2);
-	free(product);
-
-	return 0;
+	free(result);
 }
