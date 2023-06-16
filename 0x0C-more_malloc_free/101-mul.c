@@ -53,7 +53,7 @@ int *multiply(int *int1, int *int2, int int1l, int int2l)
 	int i, j, memsize, tmp, rev, carry;
 	int *prd;
 
-	memsize = (int1l + int2l + 1);
+	memsize = (int1l + int2l);
 	prd = malloc(sizeof(int) * (memsize));
 	if (prd == NULL)
 	{
@@ -61,7 +61,7 @@ int *multiply(int *int1, int *int2, int int1l, int int2l)
 		exit(98);
 	}
 
-	tmp = 0, rev = memsize - 2;
+	tmp = 0, rev = memsize - 1;
 	set0(prd, memsize);
 	for (i = 0; i < int1l; i++)
 	{
