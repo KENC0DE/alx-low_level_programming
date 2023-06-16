@@ -1,93 +1,133 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "main.h"
 
 /**
- * is_valid_number - lsj
- * @number: kdjls
- * Return: nos
+ * cnvrTOint - converet to integer
+ * @numString: number stored as string.
+ * Return: pointer to the converted number.
 */
-int is_valid_number(const char *number)
+int *cnvrTOint(char *numString)
+{
+	int i, j;
+	int leng = strlen(numString);
+	int *integer = NULL;
+
+	integer = malloc(sizeof(int) * leng);
+	if (integer == NULL)
+	{
+		printf("Error\n");
+		exit(98);
+	}
+
+	j = leng - 1;
+	for (i = 0; i < leng; i++, j--)
+		integer[i] = numString[j] - '0';
+
+	return (integer);
+}
+
+/**
+ * set0 - seth the values to 0
+ * @target: to be initialized with 0
+ * @length: target length
+ * Return: nothing
+*/
+void set0(int *target, int length)
 {
 	int i;
-	int length = strlen(number);
 
 	for (i = 0; i < length; i++)
 	{
-		if (number[i] < '0' || number[i] > '9')
-		{
-		return (0);
-		}
+		target[i] = 0;
 	}
-	return (1);
+}
+/**
+ * multiply - performs multipilication operation
+ * @int1: integer 1
+ * @int2: integer 2
+ * @int1l: integer 1 length
+ * @int2l: integer 2 length
+ * Return: pointer to product.
+*/
+int *multiply(int *int1, int *int2, int int1l, int int2l)
+{
+	int i, j, memsize, tmp, rev, carry;
+	int *prd;
+
+	memsize = (int1l + int2l + 1);
+	prd = malloc(sizeof(int) * (memsize));
+	if (prd == NULL)
+	{
+		printf("Error\n");
+		exit(98);
+	}
+
+	tmp = 0, rev = memsize - 2;
+	set0(prd, memsize);
+	for (i = 0; i < int1l; i++)
+	{
+		carry = 0;
+		for (j = 0; j < int2l; j++)
+		{
+			tmp = int1[i] * int2[j] + carry;
+			carry = tmp / 10;
+			prd[rev - j] += tmp % 10;
+			if (prd[rev - j] >= 10)
+			{
+				prd[rev - j] -= 10;
+				prd[rev - j - 1] += 1;
+			}
+		}
+		prd[rev - j] += carry;
+		rev--;
+	}
+	return (prd);
 }
 
 /**
- * multiply - ljs
- * @num1: ljsdf
- * @num2: slkdj
+ * main - excution point for performing multiplication operation.
+ * @argc: number of arguments passed to the program.
+ * @argv: the arguments passed.
+ * Return: 0
 */
-void multiply(const char *num1, const char *num2)
+int main(int argc, char **argv)
 {
-	int length1 = strlen(num1);
-	int length2 = strlen(num2);
-	int resultLength = length1 + length2;
-	int *result = calloc(resultLength, sizeof(int));
+	int i, j, len1, len2;
+	int *int1, *int2, *result = NULL;
 
-	int i, j, digit1, digit2, product, position;
-	int leadingZeros = 1;
-
-	for (i = length1 - 1; i >= 0; i--)
-	{
-		for (j = length2 - 1; j >= 0; j--)
-		{
-			digit1 = num1[i] - '0';
-			digit2 = num2[j] - '0';
-			product = digit1 * digit2;
-			position = i + j + 1;
-
-			product += result[position];
-
-			result[position] = product % 10;
-			result[position - 1] += product / 10;
-		}
-	}
-
-	for (i = 0; i < resultLength; i++)
-	{
-		if (result[i] != 0)
-		{
-		leadingZeros = 0;
-		}
-		if (!leadingZeros)
-		{
-		printf("%d", result[i]);
-		}
-	}
-
-	printf("\n");
-	free(result);
-}
-
-/**
- * main - manfuns
- * @argc: argc
- * @argv: arga
- * Return: kds
-*/
-int main(int argc, char *argv[])
-{
 	if (argc != 3)
 	{
 		printf("Error\n");
-		return (98);
+		exit(98);
 	}
-
-	if (!is_valid_number(argv[1]) || !is_valid_number(argv[2]))
+	len1 = strlen(argv[1]);
+	len2 = strlen(argv[2]);
+	for (i = 1; i < argc; i++)
 	{
-		printf("Error\n");
-		return (98);
+		for (j = 0; argv[i][j]; j++)
+		{
+			if (argv[i][j] < '0' || argv[i][j] > '9')
+			{
+				printf("Error\n");
+				exit(98);
+			}
+		}
 	}
-	multiply(argv[1], argv[2]);
+	int1 = cnvrTOint(argv[1]);
+	int2 = cnvrTOint(argv[2]);
+	result = multiply(int1, int2, len1, len2);
+	i = 0;
+	while (i < (len1 + len2))
+	{
+		if (result[i] != 0)
+			break;
+		i++;
+	}
+	for (; i < (len1 + len2); i++)
+		printf("%d", result[i]);
+	printf("\n");
+	free(int1);
+	free(int2);
+	free(result);
 	return (0);
 }
+
