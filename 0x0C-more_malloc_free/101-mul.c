@@ -3,30 +3,6 @@
 #include <string.h>
 
 /**
- * main - manfuns
- * @argc: argc
- * @argv: arga
- * Return: kds
-*/
-int main(int argc, char *argv[])
-{
-	if (argc != 3)
-	{
-		printf("Error\n");
-		return (98);
-	}
-
-	if (!is_valid_number(argv[1]) || !is_valid_number(argv[2]))
-	{
-		printf("Error\n");
-		return (98);
-	}
-
-	multiply(argv[1], argv[2]);
-	return (0);
-}
-
-/**
  * is_valid_number - lsj
  * @number: kdjls
  * Return: nos
@@ -91,4 +67,27 @@ void multiply(const char *num1, const char *num2)
 
 	printf("\n");
 	free(result);
+}
+
+/**
+ * main - manfuns
+ * @argc: argc
+ * @argv: arga
+ * Return: kds
+*/
+int main(int argc, char *argv[])
+{
+	if (argc != 3)
+	{
+		printf("Error\n");
+		return (98);
+	}
+
+	if (!is_valid_number(argv[1]) || !is_valid_number(argv[2]))
+	{
+		printf("Error\n");
+		return (98);
+	}
+	multiply(argv[1], argv[2]);
+	return (0);
 }
