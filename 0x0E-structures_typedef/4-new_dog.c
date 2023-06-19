@@ -21,10 +21,17 @@ dog_t *new_dog(char *name, float age, char *owner)
 		return (NULL);
 	kenDog->name = malloc(sizeof(char) * (nameLen + 1));
 	if (kenDog->name == NULL)
+	{
+		free(kenDog);
 		return (NULL);
+	}
 	kenDog->owner = malloc(sizeof(char) * (ownerLen + 1));
 	if (kenDog->owner == NULL)
+	{
+		free(kenDog->name);
+		free(kenDog);
 		return (NULL);
+	}
 
 	strcpy(kenDog->name, name);
 	kenDog->name[nameLen] = '\0';
