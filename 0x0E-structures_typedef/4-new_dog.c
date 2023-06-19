@@ -1,4 +1,4 @@
-#include "dog.h"
+#include "main.h"
 
 /**
  * new_dog - create new dog int the structure
@@ -10,6 +10,9 @@
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *kenDog;
+
+	if (name == NULL || owner == NULL)
+		return (NULL);
 
 	kenDog = malloc(sizeof(dog_t));
 	if (kenDog == NULL)
