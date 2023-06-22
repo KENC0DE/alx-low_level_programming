@@ -7,18 +7,15 @@
 */
 void print_all(const char * const format, ...)
 {
-	int k, flag, idx = 0;
+	int flag, idx = 0;
 	va_list suck;
 	char *str;
 
-	while (format[idx])
-		idx++;
-	k = 0;
 	va_start(suck, format);
-	while (k < idx)
+	while (format && format[idx])
 	{
 		flag = 0;
-		switch (format[k])
+		switch (format[idx])
 		{
 			case 'c':
 				printf("%c", va_arg(suck, int));
@@ -39,9 +36,9 @@ void print_all(const char * const format, ...)
 				flag = 1;
 				break;
 		}
-		if (k + 1 != idx && flag == 0)
+		if (format[idx + 1] && flag == 0)
 			printf(", ");
-		k++;
+		idx++;
 	}
 	printf("\n");
 	va_end(suck);
