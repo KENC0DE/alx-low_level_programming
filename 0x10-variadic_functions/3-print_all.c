@@ -7,11 +7,12 @@
 */
 void print_all(const char * const format, ...)
 {
-	int k, idx, flag;
+	int k, flag, idx = 0;
 	va_list suck;
 	char *str;
 
-	idx = strlen(format);
+	while (format[idx])
+		idx++;
 	k = 0;
 	va_start(suck, format);
 	while (k < idx)
