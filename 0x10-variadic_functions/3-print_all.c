@@ -11,11 +11,7 @@ void print_all(const char * const format, ...)
 	va_list suck;
 	char *str;
 
-	idx = 0;
-	while (format[idx])
-	{
-		idx++;
-	}
+	idx = strlen(format);
 	k = 0;
 	va_start(suck, format);
 	while (k < idx)
@@ -47,5 +43,6 @@ void print_all(const char * const format, ...)
 		k++;
 	}
 	printf("\n");
+	va_end(suck);
 }
 
