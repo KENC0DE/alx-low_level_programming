@@ -1,17 +1,19 @@
 section .data
-    format db "Hello, Holberton", 10, 0
+    message db 'Hello, Holberton', 0
 
 section .text
-    global main
-    extern printf
-    extern exit
+    global _start
 
-main:
-    ; Prepare the arguments for the printf function
-    push format        ; Push the address of the format string onto the stack
-    call printf        ; Call the printf function
+_start:
+    ; Write the message to stdout
+    mov eax, 4               ; Syscall number for write
+    mov ebx, 1               ; File descriptor (stdout)
+    mov ecx, message         ; Message to be printed
+    mov edx, 3               ; Length of the message
+    int 0x80                 ; Call the kernel
 
     ; Exit the program
-    xor eax, eax       ; Set the exit status code to 0
-    call exit          ; Call the exit function
+    mov eax, 1               ; Syscall number for exit
+    xor ebx, ebx             ; Exit code 0
+    int 0x80                 ; Call the kernel
 
