@@ -1,22 +1,18 @@
 section .data
-    hello db "Hello, Holberton", 10  ; 10 is the ASCII value for newline
-    len equ $ - hello                ; Length of the string
+    format db "Hello, Holberton\n", 0
 
 section .text
     global _start
 
-_start:
-    ; Prepare the arguments for the write system call
-    mov eax, 1            ; System call number for write
-    mov edi, 1            ; File descriptor for stdout
-    mov esi, hello        ; Address of the string
-    mov edx, len          ; Length of the string
+extern printf
+extern exit
 
-    ; Call the write system call
-    syscall
+_start:
+    ; Prepare the arguments for the printf function
+    push format        ; Push the address of the format string onto the stack
+    call printf        ; Call the printf function
 
     ; Exit the program
-    mov eax, 60           ; System call number for exit
-    xor edi, edi          ; Exit status code 0
-    syscall
+    xor eax, eax       ; Set the exit status code to 0
+    call exit          ; Call the exit function
 
