@@ -1,13 +1,12 @@
 section .data
-    format db "Hello, Holberton\n", 0
+    format db "Hello, Holberton", 10, 0
 
 section .text
-    global _start
+    global main
+    extern printf
+    extern exit
 
-extern printf
-extern exit
-
-_start:
+main:
     ; Prepare the arguments for the printf function
     push format        ; Push the address of the format string onto the stack
     call printf        ; Call the printf function
