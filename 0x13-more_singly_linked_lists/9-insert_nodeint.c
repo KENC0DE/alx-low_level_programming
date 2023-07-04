@@ -12,16 +12,13 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	listint_t *tp;
 	listint_t *new;
 	unsigned int i;
-	int check = (int)idx;
 
-	if (head == NULL)
-		return (NULL);
-	if (*head == NULL || check < 0)
+	if (*head == NULL)
 		return (NULL);
 
 	tp = *head;
 
-	if (idx > 0)
+	if (idx != 0)
 	{
 		for (i = 0; i < idx - 1 && tp; i++)
 		{
