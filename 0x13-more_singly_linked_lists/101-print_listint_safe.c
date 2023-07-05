@@ -31,17 +31,15 @@ void free_ptr(ptr_t **head)
 size_t print_listint_safe(const listint_t *head)
 {
 	size_t nc;
-	const listint_t *tp;
 	ptr_t *ptrs = NULL, *chk = NULL, *new;
 
-	tp = head;
-	for (nc = 0; tp; tp = tp->next, nc++)
+	for (nc = 0; head; head = head->next, nc++)
 	{
 		new = malloc(sizeof(ptr_t));
 		if (new == NULL)
 			exit(98);
 
-		new->ptr = (void *)tp;
+		new->ptr = (void *)head;
 		new->nxt = ptrs;
 		ptrs = new;
 
@@ -49,14 +47,14 @@ size_t print_listint_safe(const listint_t *head)
 		while (chk->nxt)
 		{
 			chk = chk->nxt;
-			if (tp == chk->ptr)
+			if (head == chk->ptr)
 			{
-				printf("-> [%p] %d\n", (void *)tp, tp->n);
+				printf("-> [%p] %d\n", (void *)head, head->n);
 				free_ptr(&ptrs);
 				return (nc);
 			}
 		}
-		printf("[%p] %d\n", (void *)tp, tp->n);
+		printf("[%p] %d\n", (void *)head, head->n);
 	}
 	free_ptr(&ptrs);
 	return (nc);
