@@ -1,50 +1,56 @@
-#ifndef KEN_LISTS
-#define KEN_LISTS
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "lists.h"
 
 /**
- * struct listint_s - singly linked list
- * @n: integer
- * @next: points to the next node
- *
- * Description: singly linked list node structure
- *
- */
-typedef struct listint_s
-{
-	int n;
-	struct listint_s *next;
-} listint_t;
-
-size_t print_listint(const listint_t *h);
-
-size_t print_listint(const listint_t *h);
-size_t listint_len(const listint_t *h);
-listint_t *add_nodeint(listint_t **head, const int n);
-listint_t *add_nodeint_end(listint_t **head, const int n);
-void free_listint(listint_t *head);
-void free_listint2(listint_t **head);
-int pop_listint(listint_t **head);
-listint_t *get_nodeint_at_index(listint_t *head, unsigned int index);
-int sum_listint(listint_t *head);
-listint_t *insert_nodeint_at_index(listint_t **haed, unsigned int idx, int n);
-int delete_nodeint_at_index(listint_t **head, unsigned int index);
-listint_t *reverse_listint(listint_t **head);
-size_t print_listint_safe(const listint_t *head);
-
-/**
- * struct ptrs - pointers strorage.
- * @ptr: void prointer.
- * @nxt: the next pointer.
+ * add_ptr - stores pointers for checkup
+ * @head: storage location.
+ * @p: the store address.
+ * Return: addres to the newly added location.
 */
-typedef struct ptrs
+ptr_t *add_ptr(ptr_t **head, void *p)
 {
-	void *ptr;
-	struct ptrs *nxt;
-} ptr_t;
+	ptr_t *new;
 
-#endif
+	new = malloc(sizeof(ptr_t));
+	if (new == NULL)
+		return (NULL);
+
+	new->ptr = p;
+	new->nxt = *head;
+	*head = new;
+
+	return (new);
+}
+
+/**
+ * print_listint_safe - prints linked list contents
+ * @head: pointer to the first node of the list.
+ * Return: number of nodes.
+*/
+size_t print_listint_safe(const listint_t *head)
+{
+	size_t nc;
+	const listint_t *tp;
+	ptr_t *ptrs = NULL, *chk = NULL;
+
+	if (head == NULL)
+		exit(98);
+
+	tp = head;
+	for (nc = 0; tp; tp = tp->next, nc++)
+	{
+		chk = add_ptr(&ptrs, (void *)tp);
+		while (chk->nxt)
+		{
+			chk = chk->nxt;
+			if (tp == chk->ptr)
+			{
+				printf("-> [%p] %d\n", (void *)tp, tp->n);
+				return (nc);
+			}
+		}
+		printf("[%p] %d\n", (void *)tp, tp->n);
+	}
+
+	return (nc);
+}
 
