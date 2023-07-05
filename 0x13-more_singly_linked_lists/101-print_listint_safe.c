@@ -7,18 +7,14 @@
 */
 void free_ptr(ptr_t **head)
 {
-	ptr_t *tp;
+	ptr_t *tp, *tpf;
 
-	if (head == NULL)
-		exit(98);
-	if (*head == NULL)
-		exit(98);
-
-	while (*head)
+	tp = *head;
+	while (tp)
 	{
-		tp = (*head)->nxt;
-		free(*head);
-		*head = tp;
+		tpf = tp->nxt;
+		free(tp);
+		tp = tpf;
 	}
 	*head = NULL;
 }
