@@ -46,6 +46,7 @@ size_t free_listint_safe(listint_t **h)
 			chk = chk->nxt;
 			if (*h == chk->ptr)
 			{
+				free_ptr_f(&ptrs);
 				free(*h);
 				*h = NULL;
 				return (nc);
@@ -55,6 +56,7 @@ size_t free_listint_safe(listint_t **h)
 		free(*h);
 		*h = tmp;
 	}
+	free_ptr_f(&ptrs);
 	return (nc);
 }
 
