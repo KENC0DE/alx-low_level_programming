@@ -34,9 +34,6 @@ size_t print_listint_safe(const listint_t *head)
 	const listint_t *tp;
 	ptr_t *ptrs = NULL, *chk = NULL, *new;
 
-	if (head == NULL)
-		exit(98);
-
 	tp = head;
 	for (nc = 0; tp; tp = tp->next, nc++)
 	{
