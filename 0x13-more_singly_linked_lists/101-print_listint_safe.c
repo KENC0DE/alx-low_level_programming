@@ -20,6 +20,7 @@ void free_ptr(ptr_t **head)
 		free(*head);
 		*head = tp;
 	}
+	*head = NULL;
 }
 
 /**
@@ -54,12 +55,12 @@ size_t print_listint_safe(const listint_t *head)
 			if (tp == chk->ptr)
 			{
 				printf("-> [%p] %d\n", (void *)tp, tp->n);
+				free_ptr(&ptrs);
 				return (nc);
 			}
 		}
 		printf("[%p] %d\n", (void *)tp, tp->n);
 	}
-
 	free_ptr(&ptrs);
 	return (nc);
 }
