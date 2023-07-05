@@ -22,6 +22,28 @@ ptr_t *add_ptr(ptr_t **head, void *p)
 }
 
 /**
+ * free_ptr - free every given node.
+ * @head: pointer to the first node of the list.
+ * Return: Nothing.
+*/
+void free_ptr(ptr_t **head)
+{
+	ptr_t *tp;
+
+	if (head == NULL)
+		return;
+	if (*head == NULL)
+		return;
+
+	while (*head)
+	{
+		tp = (*head)->nxt;
+		free(*head);
+		*head = tp;
+	}
+}
+
+/**
  * print_listint_safe - prints linked list contents
  * @head: pointer to the first node of the list.
  * Return: number of nodes.
@@ -51,6 +73,7 @@ size_t print_listint_safe(const listint_t *head)
 		printf("[%p] %d\n", (void *)tp, tp->n);
 	}
 
+	free_ptr(&ptrs);
 	return (nc);
 }
 
