@@ -12,7 +12,7 @@ ptr_t *add_ptr(ptr_t **head, void *p)
 
 	new = malloc(sizeof(ptr_t));
 	if (new == NULL)
-		return (NULL);
+		exit(98);
 
 	new->ptr = p;
 	new->nxt = *head;
@@ -31,9 +31,9 @@ void free_ptr(ptr_t **head)
 	ptr_t *tp;
 
 	if (head == NULL)
-		return;
+		exit(98);
 	if (*head == NULL)
-		return;
+		exit(98);
 
 	while (*head)
 	{
