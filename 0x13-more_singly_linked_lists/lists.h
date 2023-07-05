@@ -46,5 +46,7 @@ typedef struct ptrs
 	struct ptrs *nxt;
 } ptr_t;
 
+size_t free_listint_safe(listint_t **h);
+
 #endif
 
