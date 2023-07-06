@@ -8,16 +8,13 @@
 */
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-	int bit;
-	unsigned int flips = 0;
+	unsigned int bit, flips;
 
 	bit = n ^ m;
-
-	while (bit)
+	for (flips = 0; bit; bit = bit >> 1)
 	{
 		if (bit & 1)
 			flips++;
-		bit >>= 1;
 	}
 
 	return (flips);
