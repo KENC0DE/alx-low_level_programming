@@ -8,7 +8,8 @@
 */
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-	unsigned int bit, flips;
+	unsigned long int bit;
+	unsigned int flips;
 
 	bit = n ^ m;
 	for (flips = 0; bit; bit = bit >> 1)
