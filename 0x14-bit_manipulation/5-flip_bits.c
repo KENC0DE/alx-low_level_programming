@@ -12,7 +12,7 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 	unsigned int flips;
 
 	bit = n ^ m;
-	for (flips = 0; bit; bit = bit >> 1)
+	for (flips = 0; bit > 0; bit = bit >> 1)
 	{
 		if (bit & 1)
 			flips++;
