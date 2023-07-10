@@ -30,7 +30,7 @@ void fcopy(char *fromf, char *tof)
 		fdto = open(tof, O_WRONLY | O_TRUNC);
 		if (fdto == -1)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't write to NAME_OF_THE_FILE");
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", tof);
 			exit(99);
 		}
 	}
