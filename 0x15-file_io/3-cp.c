@@ -1,8 +1,36 @@
+#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
+
+/**
+ * handleErr - handles error
+ * @errName: error name.
+ * @fd: file descriptor number.
+ * @er_type: type of error to be checked.
+ *
+ * Return: nothing.
+*/
+void handleErr(char *errName, int fd, int er_type)
+{
+	if (fd == -1 && er_type == 1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", errName);
+		exit(98);
+	}
+	else if (fd == -1 && er_type == 2)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", errName);
+		exit(99);
+	}
+	else if (fd == -1 && er_type == 3)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		exit(100);
+	}
+}
 
 /**
  * fcopy - copys the content of the first file to the second file.
@@ -13,46 +41,36 @@
 */
 void fcopy(char *fromf, char *tof)
 {
-	char *buff;
+	char buff[1024];
 	int fdfrom, fdto, flag, end, fdc;
 /* Opening a file where we copy the content */
 	fdfrom = open(fromf, O_RDONLY);
-	if (fdfrom == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", fromf);
-		exit(98);
-	}
+	handleErr(fromf, fdfrom, 1);
+
 /* Opening destination file or creating if it doesn't exist*/
 	flag = O_CREAT | O_WRONLY | O_EXCL;
 	fdto = open(tof, flag, 0664);
 	if (fdto == -1)
 	{
 		fdto = open(tof, O_WRONLY | O_TRUNC);
-		if (fdto == -1)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", tof);
-			exit(99);
-		}
+		handleErr(tof, fdto, 2);
 	}
+
 /* copying the content to our copy destination */
-	do {
-		buff = malloc(sizeof(char) * 1024);
+	end = 1024;
+	while (end == 1024)
+	{
 		end = read(fdfrom, buff, 1024);
+		handleErr(fromf, fdfrom, 1);
+
 		write(fdto, buff, end);
-		free(buff);
-	} while (end);
+		handleErr(tof, fdto, 2);
+	}
 	fdc = close(fdfrom);
-	if (fdc == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fdfrom);
-		exit(100);
-	}
+	handleErr("n/a", fdc, 3);
+
 	fdc = close(fdto);
-	if (fdc == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fdto);
-		exit(100);
-	}
+	handleErr("n/a", fdc, 3);
 }
 
 /**
