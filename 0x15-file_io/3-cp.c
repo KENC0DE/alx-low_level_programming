@@ -6,26 +6,26 @@
 #include <fcntl.h>
 
 /**
- * handleErr - handles error
+ * ErrExit - handles error
  * @errName: error name.
  * @fd: file descriptor number.
  * @er_type: type of error to be checked.
  *
  * Return: nothing.
 */
-void handleErr(char *errName, int fd, int er_type)
+void ErrExit(char *errName, int fd, int er_type)
 {
-	if (fd == -1 && er_type == 1)
+	if (er_type == 1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", errName);
 		exit(98);
 	}
-	else if (fd == -1 && er_type == 2)
+	else if (er_type == 2)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", errName);
 		exit(99);
 	}
-	else if (fd == -1 && er_type == 3)
+	else if (er_type == 3)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 		exit(100);
@@ -42,10 +42,11 @@ void handleErr(char *errName, int fd, int er_type)
 void fcopy(char *fromf, char *tof)
 {
 	char buff[1024];
-	int fdfrom, fdto, flag, end, fdc;
+	int fdfrom, fdto, flag, end, fdc, err;
 /* Opening a file where we copy the content */
 	fdfrom = open(fromf, O_RDONLY);
-	handleErr(fromf, fdfrom, 1);
+	if (fdfrom == -1)
+		ErrExit(fromf, fdfrom, 1);
 
 /* Opening destination file or creating if it doesn't exist*/
 	flag = O_CREAT | O_WRONLY | O_EXCL;
@@ -53,7 +54,8 @@ void fcopy(char *fromf, char *tof)
 	if (fdto == -1)
 	{
 		fdto = open(tof, O_WRONLY | O_TRUNC);
-		handleErr(tof, fdto, 2);
+		if (fdto == -1)
+			ErrExit(tof, fdto, 2);
 	}
 
 /* copying the content to our copy destination */
@@ -61,16 +63,20 @@ void fcopy(char *fromf, char *tof)
 	while (end == 1024)
 	{
 		end = read(fdfrom, buff, 1024);
-		handleErr(fromf, fdfrom, 1);
+		if (end == -1)
+			ErrExit(fromf, fdfrom, 1);
 
-		write(fdto, buff, end);
-		handleErr(tof, fdto, 2);
+		err = write(fdto, buff, end);
+		if (err == -1)
+			ErrExit(tof, fdto, 2);
 	}
 	fdc = close(fdfrom);
-	handleErr("n/a", fdc, 3);
+	if (fdc == -1)
+		ErrExit("n/a", fdfrom, 3);
 
 	fdc = close(fdto);
-	handleErr("n/a", fdc, 3);
+	if (fdc == -1)
+		ErrExit("n/a", fdto, 3);
 }
 
 /**
