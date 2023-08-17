@@ -31,17 +31,17 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 			return (1);
 		}
 	}
-	while (i < index && tp)
+	while (i < index && tp->next)
 	{
 		if (i == index - 1)
 		{
-			dl = tp->next;
-			tp->next = NULL;
-			free(dl);
-			return (1);
-		}
-		else if (i == index - 1)
-		{
+			if (tp->next->next == NULL)
+			{
+				dl = tp->next;
+				tp->next = NULL;
+				free(dl);
+				return (1);
+			}
 			dl = tp->next;
 			tp->next = dl->next;
 			dl->next->prev = tp;
