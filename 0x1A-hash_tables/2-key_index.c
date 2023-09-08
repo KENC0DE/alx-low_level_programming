@@ -1,7 +1,7 @@
 #include "hash_tables.h"
 
 /**
- * key_idnex - evaluates index where the key should be stored.
+ * key_index - evaluates index where the key should be stored.
  * @key: the key to be stored.
  * @size: size of the array.
  *
