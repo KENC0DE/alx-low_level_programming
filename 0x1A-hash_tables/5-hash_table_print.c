@@ -2,20 +2,20 @@
 
 /**
  * hash_table_print - prints
- * @ht: is the hash table
-**/
+ * @ht: the hash table
+*/
 void hash_table_print(const hash_table_t *ht)
 {
 	hash_node_t *node;
-	unsigned long int cnt = 0, i = 0;
+	unsigned long int cont = 0, i = 0;
 
 	if (ht != NULL)
 	{
 		printf("{");
 
-		for (cnt = 0; cnt < ht->size; cnt++)
+		for (cont = 0; cont < ht->size; cont++)
 		{
-			node = ht->array[cnt];
+			node = ht->array[cont];
 
 			while (node != NULL)
 			{
@@ -30,4 +30,3 @@ void hash_table_print(const hash_table_t *ht)
 		printf("}\n");
 	}
 }
-

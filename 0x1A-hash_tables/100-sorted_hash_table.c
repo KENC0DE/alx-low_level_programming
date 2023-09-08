@@ -1,10 +1,10 @@
 #include "hash_tables.h"
 
 /**
- * shash_table_create - __---__
- * @size: Z
- * Return: NNUULL
-**/
+ * shash_table_create - create hash
+ * @size: the size
+ * Return: NULL
+*/
 shash_table_t *shash_table_create(unsigned long int size)
 {
 	shash_table_t *ht;
@@ -27,12 +27,12 @@ shash_table_t *shash_table_create(unsigned long int size)
 }
 
 /**
- * shash_table_set - 0000
- * @ht: a 88888
- * @key: t9ltlsm
- * @value: thhhen
+ * shash_table_set - adds an element to a sorted hash table
+ * @ht: a pointer
+ * @key: the key
+ * @value: the value
  * Return: 0 or 1
-**/
+*/
 int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
 	shash_node_t *new, *tmp;
@@ -108,11 +108,11 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 }
 
 /**
- * shash_table_get - ......
+ * shash_table_get - retrieves the value
  * @ht: a pointer
  * @key: the key
  * Return: NULL
-**/
+*/
 char *shash_table_get(const shash_table_t *ht, const char *key)
 {
 	shash_node_t *node;
@@ -133,9 +133,9 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 }
 
 /**
- * shash_table_print - .....
+ * shash_table_print - prints a sorted hash
  * @ht: a pointer
-**/
+*/
 void shash_table_print(const shash_table_t *ht)
 {
 	shash_node_t *node;
@@ -156,9 +156,9 @@ void shash_table_print(const shash_table_t *ht)
 }
 
 /**
- * shash_table_print_rev - ....
+ * shash_table_print_rev - prints a sorted hash
  * @ht: a pointer
-**/
+*/
 void shash_table_print_rev(const shash_table_t *ht)
 {
 	shash_node_t *node;
@@ -179,9 +179,9 @@ void shash_table_print_rev(const shash_table_t *ht)
 }
 
 /**
- * shash_table_delete - ....
+ * shash_table_delete - deletes a sorted hash
  * @ht: a pointer
-**/
+*/
 void shash_table_delete(shash_table_t *ht)
 {
 	shash_table_t *head = ht;
@@ -203,4 +203,3 @@ void shash_table_delete(shash_table_t *ht)
 	free(head->array);
 	free(head);
 }
-

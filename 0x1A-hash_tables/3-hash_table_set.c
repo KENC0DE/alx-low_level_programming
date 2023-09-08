@@ -1,43 +1,38 @@
 #include "hash_tables.h"
 
 /**
- * hash_table_set - sets hash value in the hash table
- * @ht: the table
- * @key: the key to be set.
- * @value: value for the key.
- *
- * Return: 1 on success and 0 on failure.
+ * hash_table_set - adds an element to the hash table
+ * @ht: hash table
+ * @key: key
+ * @value: value
+ * Return: 1 on succeeded 0 failure
 */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	int idx;
-	char *val, *ky;
-	hash_node_t *nw;
+	unsigned long index, size;
+	hash_node_t *new_node;
 
-	if (!ht || !key || !value)
+	if (ht == NULL || key == NULL || value == NULL)
 		return (0);
 
-	idx = key_index((const unsigned char *)key, ht->size);
-	val = strdup(value);
-	ky = strdup(key);
+	size = ht->size;
+	index = key_index((const unsigned char *)key, size);
 
-	nw = malloc(sizeof(hash_node_t));
-	if (!nw)
-		return (0);
-
-	if (ht->array[idx] && strcmp(key, ht->array[idx]->key) == 0)
+	if (ht->array[index] != NULL && strcmp(ht->array[index]->key, key) == 0)
 	{
-		ht->array[idx]->value = val;
+		ht->array[index]->value = strdup(value);
 		return (1);
 	}
 
-	nw->key = ky;
-	nw->value = val;
-	nw->next = NULL;
+	new_node = malloc(sizeof(hash_node_t));
 
-	nw->next = ht->array[idx];
-	ht->array[idx] = nw;
+	if (new_node == NULL)
+		return (0);
+
+	new_node->key = strdup(key);
+	new_node->value = strdup(value);
+	new_node->next = ht->array[index];
+	ht->array[index] = new_node;
 
 	return (1);
 }
-
