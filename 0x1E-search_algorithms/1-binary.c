@@ -30,6 +30,9 @@ int binary_search(int *array, size_t size, int value)
 {
 	size_t left, mid, right;
 
+	if (array == NULL)
+		return (-1);
+
 	left = 0;
 	right = size - 1;
 
