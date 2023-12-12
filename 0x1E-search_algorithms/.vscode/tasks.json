@@ -12,6 +12,7 @@
                                 "-Werror",
                                 "-pedantic",
                                 "-std=gnu89",
+                                "-lm",
                                 "${workspaceFolder}/*.c",
                                 "-o",
                                 "run"
