@@ -1,5 +1,25 @@
 {
         "files.associations": {
-                "search_algos.h": "c"
+                "search_algos.h": "c",
+                "charconv": "c",
+                "chrono": "c",
+                "optional": "c",
+                "format": "c",
+                "ratio": "c",
+                "system_error": "c",
+                "array": "c",
+                "functional": "c",
+                "tuple": "c",
+                "type_traits": "c",
+                "utility": "c",
+                "__bit_reference": "c",
+                "__node_handle": "c",
+                "atomic": "c",
+                "bitset": "c",
+                "deque": "c",
+                "__memory": "c",
+                "limits": "c",
+                "locale": "c",
+                "vector": "c"
         }
 }
