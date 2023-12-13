@@ -1,4 +1,5 @@
 #include "search_algos.h"
+#include <math.h>
 
 int recurse_helper(int *array, size_t size, size_t step, size_t idx, int val);
 int subrecurse_help(int *array, size_t size, size_t end, size_t idx, int val);
